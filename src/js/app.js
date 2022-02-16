@@ -5,7 +5,9 @@ const ref={
     searchForm: document.querySelector('.search-form'),
 }
 
-fetchImages().then((res)=>{
-
-console.log(res)
+fetchImages('flowers').then((res)=>{
+    const {hits: items}=res;
+    items.map((item)=>{
+        console.log(item.previewURL)
+    })
 })
