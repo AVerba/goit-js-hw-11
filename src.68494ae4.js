@@ -3,10 +3,10 @@ parcelRequire=function(e,r,t,n){var i,o="function"==typeof parcelRequire&&parcel
 },{"./../images/demo.jpg":[["demo.090c7c6d.jpg","nKR3"],"nKR3"]}],"trkg":[function(require,module,exports) {
 "use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.default=void 0;const e={API_KEY:"19232265-154127fd2dc56391162ea9fb0",BASE_URL:"https://pixabay.com/api/"};var t=e;exports.default=t;
 },{}],"gQD7":[function(require,module,exports) {
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.fetchImages=void 0;var e=t(require("./settings"));function t(e){return e&&e.__esModule?e:{default:e}}const{API_KEY:o,BASE_URL:s}=e.default,r=async()=>{try{const t=await fetch(`${s}?key=${o}&q=yellow+flowers&image_type=photo`);return await t.json()}catch(e){console.dir(e)}};exports.fetchImages=r;
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.fetchImages=void 0;var e=t(require("./settings"));function t(e){return e&&e.__esModule?e:{default:e}}const{API_KEY:r,BASE_URL:s}=e.default,o=async e=>{try{const o=await fetch(`${s}?key=${r}&q=${e}&per_page=40&&image_type=photo`);return await o.json()}catch(t){console.dir(t)}};exports.fetchImages=o;
 },{"./settings":"trkg"}],"QdeU":[function(require,module,exports) {
-"use strict";var e=require("./api/apiService");const r={imageGallery:document.querySelector(".gallery"),searchForm:document.querySelector(".search-form")};(0,e.fetchImages)().then(e=>{console.log(e)});
+"use strict";var e=require("./api/apiService");const r={imageGallery:document.querySelector(".gallery"),searchForm:document.querySelector(".search-form")};(0,e.fetchImages)("flowers").then(e=>{const{hits:r}=e;r.map(e=>{console.log(e.previewURL)})});
 },{"./api/apiService":"gQD7"}],"Focm":[function(require,module,exports) {
 "use strict";require("./sass/main.scss"),require("./js/app.js");
 },{"./sass/main.scss":"clu1","./js/app.js":"QdeU"}]},{},["Focm"], null)
-//# sourceMappingURL=/goit-js-hw-11/src.94f0bd5b.js.map
+//# sourceMappingURL=/goit-js-hw-11/src.68494ae4.js.map
