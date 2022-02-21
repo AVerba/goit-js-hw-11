@@ -7,9 +7,6 @@ const ref={
     searchForm: document.querySelector('.search-form'),
 }
 
-
-
-
 const searchFormHendler=(e)=>{
     e.preventDefault();
     const searchValue = e.currentTarget.elements.searchQuery.value.trim();
@@ -17,11 +14,19 @@ const searchFormHendler=(e)=>{
 
     fetchImages(searchValue).then((res)=>{
         const {hits: items}=res;
-        ref.imageGallery.innerHTML= createImageList(items);
-       
+        ref.imageGallery.innerHTML= createImageList(items);       
     })
-
 }
 
+
 ref.searchForm.addEventListener('submit', searchFormHendler)
+ref.imageGallery.addEventListener('scroll', ()=>{
+    if (ref.imageGallery.scrollTop + ref.imageGallery.clientHeight >= ref.imageGallery.scrollHeight) {
+        fetchImages('cats').then((res)=>{
+            const {hits: items}=res;
+            ref.imageGallery.innerHTML= createImageList(items);       
+        })
+      }
+
+})
 
