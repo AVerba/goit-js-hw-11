@@ -1,13 +1,27 @@
 import { fetchImages } from "./api/apiService";
+import { createImageCard } from "./createImageCard"; 
+import { createImageList } from "./renderImageCard";
 
 const ref={
-    imageGallery: document.querySelector('.gallery'),
+    imageGallery: document.querySelector('.cards-set'),
     searchForm: document.querySelector('.search-form'),
 }
 
-fetchImages('flowers').then((res)=>{
-    const {hits: items}=res;
-    items.map((item)=>{
-        console.log(item.previewURL)
+
+
+
+const searchFormHendler=(e)=>{
+    e.preventDefault();
+    const searchValue = e.currentTarget.elements.searchQuery.value.trim();
+    console.log (searchValue);
+
+    fetchImages(searchValue).then((res)=>{
+        const {hits: items}=res;
+        ref.imageGallery.innerHTML= createImageList(items);
+       
     })
-})
+
+}
+
+ref.searchForm.addEventListener('submit', searchFormHendler)
+
