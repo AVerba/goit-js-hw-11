@@ -4,7 +4,7 @@ import card from "../template/card.hbs";
 import { renderImageList } from "./renderImageCard";
 
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import SimpleLightbox from 'simplelightbox';
+import SimpleLightbox from "simplelightbox";
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
 const ref={
@@ -66,7 +66,9 @@ const searchFormHendler=async(e)=>{
         const {hits: items}=res;
         const imageCardMarcup = card(items);
         console.log(imageCardMarcup)
-         renderImageList(imageCardMarcup, ref.imageGallery)
+         renderImageList(imageCardMarcup, ref.imageGallery);
+
+         lightboxGallery.refresh();
 
 
         // imagesApp.resetPage();
@@ -101,7 +103,7 @@ const LoadNextPageHendler = (entries) => {
                 const {hits: items}=results;
                 const imageCardMarcup = card(items);
                 console.log("page 2")
-                 renderImageList(imageCardMarcup, ref.imageGallery)
+                renderImageList(imageCardMarcup, ref.imageGallery)
 
 
 
