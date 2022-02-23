@@ -1,0 +1,34 @@
+<ul class="card-set">
+{{#each this}}
+<li class="item">
+  <article class="card">
+
+  <div class="card-thumb">
+      <a class="card-thumb__item" href="{{largeImageURL}}">
+        <img src="{{webformatURL}}" alt="{{tags}}" loading="lazy" />
+      </a>
+  </div>
+
+  <div class="card-info">
+    <p class="info-item">
+      <p>likes</p>
+      <p>{{likes}}</p>
+    </p>
+    <p class="info-item">
+      <p>views</p>
+      <p>{{views}}</p>
+    </p>
+    <p class="info-item">
+      <p>comments</p>
+      <p>{{comments}}</p>
+    </p>
+    <p class="info-item">
+      <p>downloads</p>
+      <p>{{downloads}}</p>
+    </p>
+  </div>
+
+</article>
+</li>
+{{/each}}
+</ul>

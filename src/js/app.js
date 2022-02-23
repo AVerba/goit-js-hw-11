@@ -1,13 +1,14 @@
 import { imageService } from "./api/apiService";
-import { createImageCard } from "./createImageCard"; 
-import { createImageList } from "./renderImageCard";
+import { createImageCard } from "./createImageCard";
+import card from "../template/card.hbs";  
+import { renderImageList } from "./renderImageCard";
 
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
 const ref={
-    imageGallery: document.querySelector('.cards-set'),
+    imageGallery: document.querySelector('.gallery'),
     searchForm: document.querySelector('.search-form'),
     bottom: document.querySelector('.bottom'),
 }
@@ -50,13 +51,27 @@ const searchFormHendler=async(e)=>{
   
 
     if(res.hits.length === 0){
+
         Notify.failure('Sorry, there are no images matching your search query. Please try again.');
-    } else {
+    
+    } 
+    else {
+
         Notify.success(`Hooray! We found ${res.totalHits} images.`);
+
         clearGallery(ref.imageGallery);
         imagesApp.resetPage();
+        // ref.imageGallery.innerHTML= createImageList(items)
+       
         const {hits: items}=res;
-        ref.imageGallery.innerHTML= createImageList(items);   
+        const imageCardMarcup = card(items);
+        console.log(imageCardMarcup)
+         renderImageList(imageCardMarcup, ref.imageGallery)
+
+
+        // imagesApp.resetPage();
+        // const {hits: items}=res;
+        // ref.imageGallery.innerHTML= createImageList(items);   
 
     }
 
@@ -72,7 +87,7 @@ const LoadNextPageHendler = (entries) => {
     entries.forEach(async(entry) => {
  
         try {
-            if (entry.isIntersecting && imageService.searchQuery !== '') {
+            if (entry.isIntersecting && imagesApp.searchQuery !== '') {
 
                 console.log('Hello');
 
@@ -80,8 +95,16 @@ const LoadNextPageHendler = (entries) => {
 
                 const results = await imagesApp.fetchImages();
                 
+                // const {hits: items}=results;
+                // ref.imageGallery.innerHTML= createImageList(items);   
+
                 const {hits: items}=results;
-                ref.imageGallery.innerHTML= createImageList(items);   
+                const imageCardMarcup = card(items);
+                console.log("page 2")
+                 renderImageList(imageCardMarcup, ref.imageGallery)
+
+
+
                 
                 smoothScroll();
                 lightboxGallery.refresh();
