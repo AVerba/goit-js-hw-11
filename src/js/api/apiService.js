@@ -11,7 +11,7 @@ export class imageService{
     async fetchImages() {
         try{
             const respoonse =await axios.get(`${BASE_URL}?key=${API_KEY}&q=${this.inputQuery}&image_type=photo&orientation=horizontal&safesearch=true&page=${this.page}&per_page=40`);
-            const result = await respoonse.json();
+            const result = await respoonse.data;
             return result;  
         }
         catch (error){
