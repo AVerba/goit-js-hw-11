@@ -1,5 +1,4 @@
-
-.header {
+.site-head {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -13,6 +12,11 @@
   left: 0;
   width: 100%;
   min-height: 80px;
+}
+
+.container {
+  max-width: 1600px;
+  margin: 0 auto;
 }
 
 .search-form {
@@ -47,10 +51,7 @@
   border: none;
   background-color: transparent;
   position: absolute;
-  z-index: 3; 
-  right: 239px; 
-}
-
-.submit-btn:hover {
-  color: #bfd2ff;
+  z-index: 3;
+  right: 0;
+  top: 0;
 }
